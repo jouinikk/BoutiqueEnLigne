@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using SQLite;
+using SQLiteNetExtensions.Attributes;
+namespace BoutiqueEnLigne.Models
+{
+    class LigneCommande
+    {
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+
+        [ForeignKey(typeof(Produit))]
+        public int IdProduit { get; set; }
+
+        [ForeignKey(typeof(Commande))]
+        public int IdCommande { get; set; }
+
+        public int Quantite { get; set; }
+    }
+}
