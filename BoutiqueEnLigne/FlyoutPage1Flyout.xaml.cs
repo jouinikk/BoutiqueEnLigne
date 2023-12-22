@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using BoutiqueEnLigne.View;
 
 namespace BoutiqueEnLigne
 {
@@ -33,7 +34,7 @@ namespace BoutiqueEnLigne
             {
                 MenuItems = new ObservableCollection<FlyoutPage1FlyoutMenuItem>(new[]
                 {
-                    new FlyoutPage1FlyoutMenuItem { Id = 0, Title = "Page 1" ,TargetType=typeof(MainPage)},
+                    new FlyoutPage1FlyoutMenuItem { Id = 0, Title = "Login" ,TargetType=typeof(Login)},
                     new FlyoutPage1FlyoutMenuItem { Id = 1, Title = "Page 2" ,TargetType=typeof(MainPage)},
                     new FlyoutPage1FlyoutMenuItem { Id = 2, Title = "Page 3" ,TargetType=typeof(MainPage)},
                     new FlyoutPage1FlyoutMenuItem { Id = 3, Title = "Page 4" ,TargetType=typeof(MainPage)},
