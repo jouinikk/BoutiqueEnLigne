@@ -14,7 +14,7 @@ namespace BoutiqueEnLigne.View.Admin
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Main : TabbedPage
     {
-        private DataBaseConnection dataBase = App.DataBase;
+        private readonly DataBaseConnection dataBase = App.DataBase;
         public List<Categorie> Categories
         {
             get;
@@ -37,13 +37,12 @@ namespace BoutiqueEnLigne.View.Admin
 
         public async void LoadProducts()
         {
-            var products = await dataBase.ObtenirProduits(); 
+            var products = await dataBase.ObtenirProduits();
             productListView.ItemsSource = products;
         }
 
         public void AddProduct(object sender, EventArgs e)
         {
-           
             Produit p = new Produit
             {
                 Nom = nameEntry.Text,
@@ -59,7 +58,7 @@ namespace BoutiqueEnLigne.View.Admin
                 }
             }
 
-            try { 
+            try {
                 dataBase.AjouterProduit(p);
                 DisplayAlert("Success", "Product added successfully!", "OK");
                 LoadProducts();
@@ -77,8 +76,8 @@ namespace BoutiqueEnLigne.View.Admin
             {
                 Nom = categorieEntry.Text
             };
-            foreach (Categorie cat in Categories){
-                if (cat.Nom == c.Nom){
+            foreach (Categorie cat in Categories) {
+                if (cat.Nom == c.Nom) {
                     DisplayAlert("Denied", "A Categorie with the same ame exists", "OK");
                     v = false;
                     break;
@@ -101,12 +100,26 @@ namespace BoutiqueEnLigne.View.Admin
 
         }
 
-        public void RemoveProduct(object sender,EventArgs e)
+        public void RemoveProduct(object sender, EventArgs e)
         {
             var item = sender as SwipeItem;
             var product = item.CommandParameter as Produit;
             dataBase.SupprimerProduit(product.Id);
             LoadProducts();
+        }
+
+        public void RemoveCat(object sender, EventArgs e)
+        {
+            var item = sender as SwipeItem;
+            var category = item.CommandParameter as Categorie;
+            dataBase.SupprimerCategorie(category.Id);
+            LoadCategories();
+        }
+
+        public void EditProduct(object sender,EventArgs e){
+            var item = sender as SwipeItem;
+            var product = item.CommandParameter as Produit;
+            Navigation.PushModalAsync(new EditProductPage(product));
         }
     }
 }

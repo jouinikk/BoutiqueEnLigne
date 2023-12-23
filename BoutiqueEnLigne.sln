@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.34031.81
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoutiqueEnLigne.Android", "BoutiqueEnLigne.Android\BoutiqueEnLigne.Android.csproj", "{7892099C-9376-44AC-BAA9-47307D237ED6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoutiqueEnLigne", "BoutiqueEnLigne\BoutiqueEnLigne.csproj", "{AA187EFA-EC2B-4336-9FFA-E1F3E0450878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BoutiqueEnLigne", "BoutiqueEnLigne\BoutiqueEnLigne.csproj", "{AA187EFA-EC2B-4336-9FFA-E1F3E0450878}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DDC81FC9-E10B-4B0A-8636-ECDFE75F424A}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

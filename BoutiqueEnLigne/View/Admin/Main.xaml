@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
             x:Class="BoutiqueEnLigne.View.Admin.Main">
-  <!--Pages can be added as references or inline-->
+
     <ContentPage Title="Ajout Produit" >
         <StackLayout>
             <Entry x:Name="nameEntry" Placeholder="Name" />
@@ -13,22 +13,31 @@
             <Button Text="Add Product" Clicked="AddProduct" />
         </StackLayout>
     </ContentPage>
+
     <ContentPage Title="Ajout Categorie">
         <StackLayout>
             <Entry x:Name="categorieEntry" Placeholder="Category"/>
             <Button Text="Add Categorie" Clicked="AddCategorie"/>
         </StackLayout>
     </ContentPage>
+
     <ContentPage Title="All Categories">
         <StackLayout>
             <ListView x:Name="categoryListView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Nom}" FontAttributes="Bold"/>
-                                <!-- Add any other properties you want to display -->
-                            </StackLayout>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItem Text="Edit"/>
+                                    <SwipeItem Text="Delete" Clicked="RemoveCat" CommandParameter="{Binding .}"/>
+                                </SwipeView.LeftItems>
+                                <SwipeView.Content>
+                                    <StackLayout Padding="10">
+                                        <Label Text="{Binding Nom}" FontAttributes="Bold"/>
+                                    </StackLayout>
+                                </SwipeView.Content>
+                            </SwipeView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
@@ -45,17 +54,17 @@
                             <SwipeView>
                                 <SwipeView.LeftItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="Edit"/>
+                                        <SwipeItem Text="Edit" Clicked="EditProduct" CommandParameter="{Binding .}"/>
                                         <SwipeItem Text="Delete" Clicked="RemoveProduct" CommandParameter="{Binding .}"/>
                                     </SwipeItems>
                                 </SwipeView.LeftItems>
                                 <SwipeView.Content>
-                                <StackLayout Padding="10" HeightRequest="20">
-                                    <Label Text="{Binding Nom}" FontSize="20"/>
-                                    <Label Text="{Binding Description}" />
-                                    <Image Source="{Binding UrlImage}" />
-                                    <Label Text="{Binding Prix}" />
-                                </StackLayout>
+                                    <StackLayout Padding="10" HeightRequest="20">
+                                        <Label Text="{Binding Nom}" FontSize="20"/>
+                                        <Label Text="{Binding Description}" />
+                                        <Image Source="{Binding UrlImage}" />
+                                        <Label Text="{Binding Prix}" />
+                                    </StackLayout>
                                 </SwipeView.Content>
                             </SwipeView>
                         </ViewCell>
@@ -64,4 +73,5 @@
             </ListView>
         </StackLayout>
     </ContentPage>
+
 </TabbedPage>
