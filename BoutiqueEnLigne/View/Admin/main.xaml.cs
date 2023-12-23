@@ -37,7 +37,7 @@ namespace BoutiqueEnLigne.View.Admin
 
         public async void LoadProducts()
         {
-            var products = await dataBase.ObtenirProduits(); // Use async method synchronously for simplicity
+            var products = await dataBase.ObtenirProduits(); 
             productListView.ItemsSource = products;
         }
 
@@ -106,6 +106,7 @@ namespace BoutiqueEnLigne.View.Admin
             var item = sender as SwipeItem;
             var product = item.CommandParameter as Produit;
             dataBase.SupprimerProduit(product.Id);
+            LoadProducts();
         }
     }
 }
