@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text;
 using SQLite;
@@ -6,76 +6,76 @@ using BoutiqueEnLigne.Models;
 
 namespace BoutiqueEnLigne.DB
 {
-    class DataBaseConnection
+    public class DataBaseConnection
     {
-        private readonly SQLiteConnection _baseDeDonnees;
+        public readonly SQLiteAsyncConnection _baseDeDonnees;
         public DataBaseConnection(string cheminBaseDeDonnees)
         {
-            _baseDeDonnees = new SQLiteConnection(cheminBaseDeDonnees);
-            _baseDeDonnees.CreateTable<Categorie>();
-            _baseDeDonnees.CreateTable<Produit>();
-            _baseDeDonnees.CreateTable<LigneCommande>();
-            _baseDeDonnees.CreateTable<Commande>();
+            _baseDeDonnees = new SQLiteAsyncConnection(cheminBaseDeDonnees,true);
+            _baseDeDonnees.CreateTableAsync<Categorie>().Wait();
+            _baseDeDonnees.CreateTableAsync<Produit>().Wait();
+            _baseDeDonnees.CreateTableAsync<LigneCommande>().Wait();
+            _baseDeDonnees.CreateTableAsync<Commande>().Wait();
         }
 
         public void AddCategorie(Categorie c)
         {
-            _baseDeDonnees.Insert(c);
+            _baseDeDonnees.InsertAsync(c);
         }
-        public List<Categorie> ObtenirCategories()
+        public Task<List<Categorie>> ObtenirCategories()
         {
-            return _baseDeDonnees.Table<Categorie>().ToList();
+            return _baseDeDonnees.Table<Categorie>().ToListAsync();
         }
 
         public void ModifierCategorie(Categorie categorie)
         {
-            _baseDeDonnees.Update(categorie);
+            _baseDeDonnees.UpdateAsync(categorie);
         }
 
         public void SupprimerCategorie(int idCategorie)
         {
-            _baseDeDonnees.Delete<Categorie>(idCategorie);
+            _baseDeDonnees.DeleteAsync<Categorie>(idCategorie);
         }
 
 
         /////////////////////////////////////
 
-        public List<Produit> ObtenirProduits()
+        public Task<List<Produit>> ObtenirProduits()
         {
-            return _baseDeDonnees.Table<Produit>().ToList();
+            return _baseDeDonnees.Table<Produit>().ToListAsync();
         }
 
 
-        public List<Produit> ObtenirProduit(int idCategorie)
+        public Task<List<Produit>> ObtenirProduit(int idCategorie)
         {
-            return _baseDeDonnees.Table<Produit>().Where(p => p.IdCategorie == idCategorie).ToList();
+            return _baseDeDonnees.Table<Produit>().Where(p => p.IdCategorie == idCategorie).ToListAsync();
         }
 
         public void AjouterProduit(Produit produit)
         {
-            _baseDeDonnees.Insert(produit);
+            _baseDeDonnees.InsertAsync(produit);
         }
 
         public void ModifierProduit(Produit produit)
         {
-            _baseDeDonnees.Update(produit);
+            _baseDeDonnees.UpdateAsync(produit);
         }
 
         public void SupprimerProduit(int idProduit)
         {
-            _baseDeDonnees.Delete<Produit>(idProduit);
+            _baseDeDonnees.DeleteAsync<Produit>(idProduit);
         }
 
         ///////////////////////////////
 
         public void AjouterLigneCommande(LigneCommande ligneCommande)
         {
-            _baseDeDonnees.Insert(ligneCommande);
+            _baseDeDonnees.InsertAsync(ligneCommande);
         }
 
-        public List<LigneCommande> ObtenirLignesCommande(int idCommande)
+        public Task<List<LigneCommande>> ObtenirLignesCommande(int idCommande)
         {
-            return _baseDeDonnees.Table<LigneCommande>().Where(l => l.IdCommande== idCommande).ToList();
+            return _baseDeDonnees.Table<LigneCommande>().Where(l => l.IdCommande== idCommande).ToListAsync();
         }
 
         ////////////////////////////
@@ -83,7 +83,7 @@ namespace BoutiqueEnLigne.DB
 
         public void AjouterCommande(Commande commande)
         {
-            _baseDeDonnees.Insert(commande);
+            _baseDeDonnees.InsertAsync(commande);
         }
 
     }

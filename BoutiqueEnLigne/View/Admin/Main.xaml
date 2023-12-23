@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            x:Class="BoutiqueEnLigne.View.Admin.Main">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Ajout Produit" >
+        <StackLayout>
+            <Entry x:Name="nameEntry" Placeholder="Name" />
+            <Entry x:Name="descriptionEntry" Placeholder="Description" />
+            <Entry x:Name="prixEntry" Placeholder="Price"/>
+            <Entry x:Name="urlImageEntry" Placeholder="Image"/>
+            <Picker x:Name="categoryPicker" Title="Select a category" />
+            <Button Text="Add Product" Clicked="AddProduct" />
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="Ajout Categorie">
+        <StackLayout>
+            <Entry x:Name="categorieEntry" Placeholder="Category"/>
+            <Button Text="Add Categorie" Clicked="AddCategorie"/>
+        </StackLayout>
+    </ContentPage>
+    <ContentPage Title="All Categories">
+        <StackLayout>
+            <ListView x:Name="categoryListView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="{Binding Nom}" FontAttributes="Bold"/>
+                                <!-- Add any other properties you want to display -->
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="All Products">
+        <StackLayout>
+            <ListView x:Name="productListView" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10" >
+                                <Label Text="{Binding Nom}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Description}" />
+                                <Image Source="{Binding UrlImage}" />
+                                <Label Text="{Binding Prix}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>

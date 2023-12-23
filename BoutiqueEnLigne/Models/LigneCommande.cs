@@ -5,7 +5,7 @@ using SQLite;
 using SQLiteNetExtensions.Attributes;
 namespace BoutiqueEnLigne.Models
 {
-    class LigneCommande
+    public class LigneCommande
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }

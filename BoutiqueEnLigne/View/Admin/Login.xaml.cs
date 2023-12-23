@@ -1,6 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
-
+using BoutiqueEnLigne.View.Admin;
 namespace BoutiqueEnLigne.View
 {
     public partial class Login : ContentPage
@@ -14,13 +14,11 @@ namespace BoutiqueEnLigne.View
         {
             string username = usernameEntry.Text;
             string password = passwordEntry.Text;
-
+            
             if (username == "admin" && password == "admin")
             {
-                DisplayAlert("Login Successful", "Welcome, Admin!", "OK");
-
-                // Navigate to a new page (you can replace MainPage with your desired page)
-                App.Current.MainPage = new MainPage();
+                /*                DisplayAlert("Login Successful", "Welcome, Admin!", "OK");*/
+                App.Current.MainPage = new Main();
             }
             else
             {
