@@ -42,12 +42,22 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10" >
-                                <Label Text="{Binding Nom}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Description}" />
-                                <Image Source="{Binding UrlImage}" />
-                                <Label Text="{Binding Prix}" />
-                            </StackLayout>
+                            <SwipeView>
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="Edit"/>
+                                        <SwipeItem Text="Delete" Clicked="RemoveProduct" CommandParameter="{Binding .}"/>
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.Content>
+                                <StackLayout Padding="10" HeightRequest="20">
+                                    <Label Text="{Binding Nom}" FontSize="20"/>
+                                    <Label Text="{Binding Description}" />
+                                    <Image Source="{Binding UrlImage}" />
+                                    <Label Text="{Binding Prix}" />
+                                </StackLayout>
+                                </SwipeView.Content>
+                            </SwipeView>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

@@ -100,5 +100,12 @@ namespace BoutiqueEnLigne.View.Admin
             }
 
         }
+
+        public void RemoveProduct(object sender,EventArgs e)
+        {
+            var item = sender as SwipeItem;
+            var product = item.CommandParameter as Produit;
+            dataBase.SupprimerProduit(product.Id);
+        }
     }
 }
