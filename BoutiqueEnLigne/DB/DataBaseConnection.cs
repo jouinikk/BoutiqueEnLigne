@@ -29,7 +29,7 @@ namespace BoutiqueEnLigne.DB
 
         public void ModifierCategorie(Categorie categorie)
         {
-            _baseDeDonnees.UpdateAsync(categorie);
+            _ = _baseDeDonnees.UpdateAsync(categorie);
         }
 
         public void SupprimerCategorie(int idCategorie)

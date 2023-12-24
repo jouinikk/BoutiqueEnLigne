@@ -29,7 +29,7 @@
                         <ViewCell>
                             <SwipeView>
                                 <SwipeView.LeftItems>
-                                    <SwipeItem Text="Edit"/>
+                                    <SwipeItem Text="Edit" Clicked="EditCat" CommandParameter="{Binding .}"/>
                                     <SwipeItem Text="Delete" Clicked="RemoveCat" CommandParameter="{Binding .}"/>
                                 </SwipeView.LeftItems>
                                 <SwipeView.Content>

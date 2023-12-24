@@ -116,10 +116,19 @@ namespace BoutiqueEnLigne.View.Admin
             LoadCategories();
         }
 
-        public void EditProduct(object sender,EventArgs e){
+        public async void EditProduct(object sender,EventArgs e){
             var item = sender as SwipeItem;
             var product = item.CommandParameter as Produit;
             Navigation.PushModalAsync(new EditProductPage(product));
+            LoadProducts();
+        }
+
+        public async void EditCat(object sender, EventArgs e)
+        {
+            var item = sender as SwipeItem;
+            var category = item.CommandParameter as Categorie;
+            await Navigation.PushModalAsync(new EditCategoryPage(category));
+            LoadCategories();
         }
     }
 }

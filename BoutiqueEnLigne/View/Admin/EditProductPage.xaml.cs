@@ -9,7 +9,7 @@ namespace BoutiqueEnLigne.View.Admin
     public partial class EditProductPage : ContentPage
     {
         private readonly DataBaseConnection dataBase = App.DataBase;
-        private Produit product;
+        public Produit product;
         public List<Categorie> categories { get; set; }
         public EditProductPage(Produit selectedProduct)
         {
