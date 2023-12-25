@@ -3,6 +3,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.IO;
 using BoutiqueEnLigne.DB;
+using BurgerSpot.Views;
+using BurgerSpot.ViewModel;
+using BoutiqueEnLigne.Views;
+
 namespace BoutiqueEnLigne
 {
     public partial class App : Application
@@ -26,7 +30,7 @@ namespace BoutiqueEnLigne
         {
             InitializeComponent();
 
-            MainPage = new FlyoutPage1();
+            MainPage = new NavigationPage(new LandingPage());
         }
 
         protected override void OnStart()

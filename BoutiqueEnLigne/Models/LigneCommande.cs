@@ -16,6 +16,11 @@ namespace BoutiqueEnLigne.Models
         [ForeignKey(typeof(Commande))]
         public int IdCommande { get; set; }
 
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        public Produit Produit { get; set; }
+
         public int Quantite { get; set; }
+
+
     }
 }

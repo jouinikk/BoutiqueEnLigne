@@ -15,7 +15,9 @@
     </ContentPage>
     <ContentPage Title="Ajout Categorie">
         <StackLayout>
-            <Entry x:Name="categorieEntry" Placeholder="Category"/>
+            <Entry x:Name="categorieEntry" Placeholder="Category Name"/>
+            <Entry x:Name="categorieEntry1" Placeholder="Category  image url "/>
+
             <Button Text="Add Categorie" Clicked="AddCategorie"/>
         </StackLayout>
     </ContentPage>

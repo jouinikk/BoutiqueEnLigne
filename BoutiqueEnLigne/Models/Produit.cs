@@ -1,4 +1,5 @@
-﻿using SQLite;
+﻿using BurgerSpot.Model;
+using SQLite;
 using SQLiteNetExtensions.Attributes;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace BoutiqueEnLigne.Models
         
         [ForeignKey(typeof(Categorie))]
         public int IdCategorie { get; set; }
+
+        public override string ToString()
+        {
+            return Nom+ Description; // Display the category name
+        }
     }
 
 }

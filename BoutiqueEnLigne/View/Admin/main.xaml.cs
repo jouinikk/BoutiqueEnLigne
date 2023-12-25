@@ -75,15 +75,20 @@ namespace BoutiqueEnLigne.View.Admin
             var v = true;
             Categorie c = new Categorie
             {
-                Nom = categorieEntry.Text
+                Nom = categorieEntry.Text,
+                img = categorieEntry1.Text // Ajoutez l'URL de l'image
             };
-            foreach (Categorie cat in Categories){
-                if (cat.Nom == c.Nom){
-                    DisplayAlert("Denied", "A Categorie with the same ame exists", "OK");
+
+            foreach (Categorie cat in Categories)
+            {
+                if (cat.Nom == c.Nom)
+                {
+                    DisplayAlert("Denied", "A Categorie with the same name exists", "OK");
                     v = false;
                     break;
                 }
             }
+
             if (v)
             {
                 try
@@ -91,6 +96,7 @@ namespace BoutiqueEnLigne.View.Admin
                     dataBase.AddCategorie(c);
                     DisplayAlert("Success", "The New Categorie has been added", "OK");
                     categorieEntry.Text = "";
+                    categorieEntry1.Text = ""; // Efface également l'URL de l'image après l'ajout
                     LoadCategories();
                 }
                 catch (Exception ex)
@@ -98,8 +104,8 @@ namespace BoutiqueEnLigne.View.Admin
                     Debug.WriteLine("Error:", ex.Message);
                 }
             }
-
         }
+
 
         public void RemoveProduct(object sender,EventArgs e)
         {

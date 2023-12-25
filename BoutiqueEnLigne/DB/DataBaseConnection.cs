@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SQLite;
 using BoutiqueEnLigne.Models;
+using System;
 
 namespace BoutiqueEnLigne.DB
 {
@@ -56,6 +57,12 @@ namespace BoutiqueEnLigne.DB
             _baseDeDonnees.InsertAsync(produit);
         }
 
+        public Task<Commande> GetCommandeByNomClientAsync(string nomClient)
+        {
+            return _baseDeDonnees.Table<Commande>().FirstOrDefaultAsync(c => c.NomClient == nomClient);
+        }
+
+
         public void ModifierProduit(Produit produit)
         {
             _baseDeDonnees.UpdateAsync(produit);
@@ -80,11 +87,26 @@ namespace BoutiqueEnLigne.DB
 
         ////////////////////////////
 
-
-        public void AjouterCommande(Commande commande)
+        public async Task<List<LigneCommande>> ObtenirLignesCommande1Async()
         {
-            _baseDeDonnees.InsertAsync(commande);
+            return await _baseDeDonnees.Table<LigneCommande>().ToListAsync();
         }
+
+        public void AjouterCommandeAsync(Commande commande)
+        {
+             _baseDeDonnees.InsertAsync(commande);
+        }
+
+        public async Task<Produit> GetProduitByIdAsync(int produitId)
+        {
+
+            return await _baseDeDonnees.FindAsync<Produit>(produitId);
+        }
+        public void UpdateLigneCommande(LigneCommande ligneCommande)
+        {
+            _baseDeDonnees.UpdateAsync(ligneCommande);
+        }
+
 
     }
 }
